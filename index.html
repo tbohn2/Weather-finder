@@ -21,57 +21,59 @@
             <h2 class="mb-2">Search for a City:</h2>
             <input id="input" class="col-11 m-2" type="text" placeholder="City Name">
             <button id="searchbtn" class="btn btn-primary col-11 m-2">Search</button>
-            <ul class="d-flex align-items-center list-group col-11 pt-2 border-top border-secondary border-1">
+            <ul id="searchedlist"
+                class="d-flex align-items-center list-group col-11 pt-2 border-top border-secondary border-1">
                 <li class="list-group-item col-12 text-center btn btn-primary">Mesa</li>
                 <li class="list-group-item col-12 text-center btn btn-primary">Mesa</li>
             </ul>
         </div>
 
         <div class="col-9 border-dark border">
-            <div class="col-10 border border-dark">
-                <h2>Mesa (Date) symbol</h2>
-                <p>Temp: </p>
-                <p>Wind: </p>
-                <p>Humidity: </p>
+            <div id="todaycard" class="col-10 border border-dark">
+                <h2></h2>
+                <p class="temp"></p>
+                <p class="wind"></p>
+                <p class="humidity"></p>
             </div>
             <div>
-                <h3>5-Day Forecast:</h3>
+                <h3 id="forecasthead"></h3>
                 <div class="d-flex justify-content-between col-10">
-                    <div class="bg-primary col-2">
-                        <h4>Mesa (Date)</h2>
-                            <p>Symbol</p>
-                            <p>Temp: </p>
-                            <p>Wind: </p>
-                            <p>Humidity: </p>
+                    <div id="daycard1" class="col-2">
+                        <h4></h4>
+                        <p class="symbol"></p>
+                        <p class="temp"></p>
+                        <p class="wind"></p>
+                        <p class="humidity"></p>
                     </div>
-                    <div class="bg-primary col-2">
-                        <h4>Mesa (Date)</h2>
-                            <p>Symbol</p>
-                            <p>Temp: </p>
-                            <p>Wind: </p>
-                            <p>Humidity: </p>
+                    <div id="daycard1" class="col-2">
+                        <h4></h4>
+                        <p class="symbol"></p>
+                        <p class="temp"></p>
+                        <p class="wind"></p>
+                        <p class="humidity"></p>
                     </div>
-                    <div class="bg-primary col-2">
-                        <h4>Mesa (Date)</h2>
-                            <p>Symbol</p>
-                            <p>Temp: </p>
-                            <p>Wind: </p>
-                            <p>Humidity: </p>
+                    <div id="daycard1" class="col-2">
+                        <h4></h4>
+                        <p class="symbol"></p>
+                        <p class="temp"></p>
+                        <p class="wind"></p>
+                        <p class="humidity"></p>
                     </div>
-                    <div class="bg-primary col-2">
-                        <h4>Mesa (Date)</h2>
-                            <p>Symbol</p>
-                            <p>Temp: </p>
-                            <p>Wind: </p>
-                            <p>Humidity: </p>
+                    <div id="daycard1" class="col-2">
+                        <h4></h4>
+                        <p class="symbol"></p>
+                        <p class="temp"></p>
+                        <p class="wind"></p>
+                        <p class="humidity"></p>
                     </div>
-                    <div class="bg-primary col-2">
-                        <h4>Mesa (Date)</h2>
-                            <p>Symbol</p>
-                            <p>Temp: </p>
-                            <p>Wind: </p>
-                            <p>Humidity: </p>
+                    <div id="daycard1" class="col-2">
+                        <h4></h4>
+                        <p class="symbol"></p>
+                        <p class="temp"></p>
+                        <p class="wind"></p>
+                        <p class="humidity"></p>
                     </div>
+
 
                 </div>
             </div>
