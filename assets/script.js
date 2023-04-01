@@ -21,7 +21,6 @@ var city = ""
 searchbtn.on('click', function (event) {
     event.preventDefault()
     city = input.val().trim()
-    console.log(city);
     findCoord()
 })
 
@@ -33,7 +32,6 @@ function findCoord() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
             lat = data[0].lat
             lon = data[0].lon
             findWeather()
@@ -41,14 +39,20 @@ function findCoord() {
 }
 function findWeather() {
     // api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid={API key}
-    var weatherURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=c8e2a7585038b4ebf8428eb49100360f"
-    console.log(weatherURL);
+    var weatherURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=c8e2a7585038b4ebf8428eb49100360f&units=imperial&cnt=6"
     fetch(weatherURL)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
             console.log(data);
+            console.log(data.list[0].dt_txt);
+            console.log(data.list[0].main.temp);
+            console.log(data.list[0].main.humidity);
+            console.log(data.list[0].wind.speed);
+            console.log(data.list[0].weather[0].icon);
+
+
         });
 }
 
