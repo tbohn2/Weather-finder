@@ -60,6 +60,20 @@ function findWeather() {
             return response.json();
         })
         .then(function (data) {
+            for (let i = 0; i < data.list.length; i += 8) {
+                let x = (i) / 8;
+                console.log(x);
+                let forecastcard = forecastcards[x]
+                let src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png"
+                forecastcard.children("h4").text(data.list[i].dt_txt)
+                forecastcard.children(".symbol").attr("src", src)
+                forecastcard.children(".temp").text("Temp: " + data.list[i].main.temp)
+                forecastcard.children(".wind").text("Wind: " + data.list[i].wind.speed + "MPH")
+                forecastcard.children(".humidity").text("Humidity: " + data.list[i].main.humidity + "%")
+            }
+
+
+
             console.log(data);
             console.log(data.list[0].dt_txt);
             console.log(data.list[0].main.temp);
