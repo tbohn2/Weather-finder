@@ -8,7 +8,8 @@ var searched = $(".list-group-item")
 var lat = ""
 var lon = ""
 var city = ""
-
+var today = dayjs().format("M/D/YYYY")
+console.log(today);
 
 // c8e2a7585038b4ebf8428eb49100360f API key
 
@@ -39,22 +40,36 @@ function findCoord() {
 }
 function findWeather() {
     // api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid={API key}
-    var weatherURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=c8e2a7585038b4ebf8428eb49100360f&units=imperial&cnt=6"
-    fetch(weatherURL)
+    // https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={API key}
+
+    var todayURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=c8e2a7585038b4ebf8428eb49100360f&units=imperial"
+    fetch(todayURL)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
             console.log(data);
-            console.log(data.list[0].dt_txt);
-            console.log(data.list[0].main.temp);
-            console.log(data.list[0].main.humidity);
-            console.log(data.list[0].wind.speed);
-            console.log(data.list[0].weather[0].icon);
-
-
+            // console.log(data.list[0].dt_txt);
+            console.log(data.main.temp);
+            console.log(data.main.humidity);
+            console.log(data.wind.speed);
+            console.log(data.weather[0].icon);
         });
 }
+//     var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=c8e2a7585038b4ebf8428eb49100360f&units=imperial"
+//     fetch(forecastURL)
+//         .then(function (response) {
+//             return response.json();
+//         })
+//         .then(function (data) {
+//             console.log(data);
+//             console.log(data.list[0].dt_txt);
+//             console.log(data.list[0].main.temp);
+//             console.log(data.list[0].main.humidity);
+//             console.log(data.list[0].wind.speed);
+//             console.log(data.list[0].weather[0].icon);
+//         });
+// }
 
 
 // fetch("http:api.openweathermap.org/geo/1.0/direct?q=phoenix&appid=c8e2a7585038b4ebf8428eb49100360f")
