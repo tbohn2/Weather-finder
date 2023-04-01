@@ -9,7 +9,6 @@ var lat = ""
 var lon = ""
 var city = ""
 var today = dayjs().format("M/D/YYYY")
-console.log(today);
 
 // c8e2a7585038b4ebf8428eb49100360f API key
 
@@ -39,21 +38,28 @@ function findCoord() {
         })
 }
 function findWeather() {
-    // api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid={API key}
-    // https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={API key}
-
     var todayURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=c8e2a7585038b4ebf8428eb49100360f&units=imperial"
     fetch(todayURL)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
-            // console.log(data.list[0].dt_txt);
-            console.log(data.main.temp);
-            console.log(data.main.humidity);
-            console.log(data.wind.speed);
-            console.log(data.weather[0].icon);
+            //  https://openweathermap.org/img/wn/10d@2x.png
+            let todaysymbol = $("<img>")
+            let src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
+            todaysymbol.attr("src", src)
+            todaycard.children("h2").text(data.name + "(" + today + ") ")
+            todaycard.children("h2").append(todaysymbol)
+            todaycard.children(".temp").text("Temp: " + data.main.temp)
+            todaycard.children(".wind").text("Wind: " + data.wind.speed + "MPH")
+            todaycard.children(".humidity").text("Humidity: " + data.main.humidity + "%")
+
+            // console.log(data);
+            // console.log(data.name);
+            // console.log(data.main.temp);
+            // console.log(data.main.humidity);
+            // console.log(data.wind.speed);
+            // console.log(data.weather[0].icon);
         });
 }
 //     var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=c8e2a7585038b4ebf8428eb49100360f&units=imperial"
