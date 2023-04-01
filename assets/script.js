@@ -4,6 +4,9 @@ var searchedlist = $("#searchedlist")
 var todaycard = $("#todaycard")
 var forecasthead = $("#forecasthead")
 var forecastcards = [$("#daycard1"), $("#daycard2"), $("#daycard3"), $("#daycard4"), $("#daycard5")]
+var lat = ""
+var lon = ""
+var city = ""
 
 // c8e2a7585038b4ebf8428eb49100360f API key
 
@@ -13,12 +16,34 @@ var forecastcards = [$("#daycard1"), $("#daycard2"), $("#daycard3"), $("#daycard
 // To get coordinates, limit up to 5
 // http:api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
-fetch("http:api.openweathermap.org/geo/1.0/direct?q=phoenix&appid=c8e2a7585038b4ebf8428eb49100360f")
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        console.log(data);
-        console.log(data[0].lat)
-        console.log(data[0].lon)
-    });
+searchbtn.on('click', function (event) {
+    // event.preventDefault()
+    city = input.val().trim()
+    console.log(city);
+    findWeather()
+})
+
+function findWeather() {
+    var coordURL = "http:api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=c8e2a7585038b4ebf8428eb49100360f"
+    console.log(coordURL);
+    fetch(coordURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            lat = data[0].lat
+            lon = data[0].lon
+            console.log(lat)
+            console.log(lon)
+        })
+}
+
+
+// fetch("http:api.openweathermap.org/geo/1.0/direct?q=phoenix&appid=c8e2a7585038b4ebf8428eb49100360f")
+//     .then(function (response) {
+//         return response.json();
+//     })
+//     .then(function (data) {
+//
+//     });
