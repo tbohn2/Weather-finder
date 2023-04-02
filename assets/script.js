@@ -33,7 +33,7 @@ searchbtn.on('click', function (event) {
 })
 
 function addToSearched() {
-    searchedcities.push(city)
+    searchedcities.unshift(city)
     searchedcities = $.grep(searchedcities, function (element, index) {
         return index === $.inArray(element, searchedcities)
     })
@@ -45,6 +45,10 @@ function findWeather() {
     var todayURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=c8e2a7585038b4ebf8428eb49100360f&units=imperial"
     fetch(todayURL)
         .then(function (response) {
+            if (!response.ok) {
+                alert("Please enter a valid city")
+                return
+            }
             return response.json();
         })
         .then(function (data) {
