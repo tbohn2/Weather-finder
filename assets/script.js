@@ -24,7 +24,6 @@ function loadSearched() {
         newSearched.text(searchedcities[i])
         searchedlist.append(newSearched)
     }
-
 }
 
 searchbtn.on('click', function (event) {
@@ -35,6 +34,9 @@ searchbtn.on('click', function (event) {
 
 function addToSearched() {
     searchedcities.push(city)
+    searchedcities = $.grep(searchedcities, function (element, index) {
+        return index === $.inArray(element, searchedcities)
+    })
     localStorage.setItem("searched", JSON.stringify(searchedcities))
     loadSearched()
 }
