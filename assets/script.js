@@ -77,18 +77,29 @@ function findWeather() {
             return response.json();
         })
         .then(function (data) {
-            for (let i = 4; i < data.list.length; i += 8) {
-                let x = (i - 4) / 8;
-                let forecastcard = forecastcards[x]
+            console.log(data);
+            var $date = $(data.list[0].dt_txt.split(" "))
+            console.log($date[0]);
+            console.log($date[0] != "2023-04-03");
+            let middayWeather = $([])
+            for (let i = 0; i < data.list.length; i++) {
+                if (data.list[i].dt_txt.split(" ").pop() == "00:00:00" && $($date[i] != "2023-04-02")) {
+                    middayWeather.push(data.list[i])
+                }
+            }
+            console.log(middayWeather);
+
+            for (let i = 0; i < middayWeather.length; i++) {
+                let forecastcard = forecastcards[i]
                 forecastcard.addClass("bg-info")
-                let src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png"
-                let date = (data.list[i].dt_txt).slice(0, 10)
+                let src = "https://openweathermap.org/img/wn/" + middayWeather[i].weather[0].icon + "@2x.png"
+                let date = (middayWeather[i].dt_txt).slice(0, 10)
                 date = dayjs(date).format("M/D/YYYY")
                 forecastcard.children("h4").text(date)
                 forecastcard.children(".symbol").attr("src", src)
-                forecastcard.children(".temp").text("Temp: " + data.list[i].main.temp)
-                forecastcard.children(".wind").text("Wind: " + data.list[i].wind.speed + "MPH")
-                forecastcard.children(".humidity").text("Humidity: " + data.list[i].main.humidity + "%")
+                forecastcard.children(".temp").text("Temp: " + middayWeather[i].main.temp)
+                forecastcard.children(".wind").text("Wind: " + middayWeather[i].wind.speed + "MPH")
+                forecastcard.children(".humidity").text("Humidity: " + middayWeather[i].main.humidity + "%")
             }
         });
 }
