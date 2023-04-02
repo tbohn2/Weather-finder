@@ -44,6 +44,7 @@ function findWeather() {
         })
         .then(function (data) {
             //  https://openweathermap.org/img/wn/10d@2x.png
+            todaycard.addClass("bg-info")
             let todaysymbol = $("<img>")
             let src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
             todaysymbol.attr("src", src)
@@ -63,6 +64,7 @@ function findWeather() {
             for (let i = 4; i < data.list.length; i += 8) {
                 let x = (i - 4) / 8;
                 let forecastcard = forecastcards[x]
+                forecastcard.addClass("bg-info")
                 let src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png"
                 let date = (data.list[i].dt_txt).slice(0, 10)
                 date = dayjs(date).format("M/D/YYYY")
