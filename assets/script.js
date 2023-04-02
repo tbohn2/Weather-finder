@@ -16,21 +16,20 @@ loadSearched()
 function loadSearched() {
     searchedlist.empty()
     for (let i = 0; i < searchedcities.length; i++) {
-        let newSearched = $("<li>")
+        let newSearched = $("<btn>")
         newSearched.addClass("list-group-item col-12 text-center btn btn-primary")
         newSearched.text(searchedcities[i])
         searchedlist.append(newSearched)
     }
+    var searchedbtn = $(".list-group-item")
+    searchedbtn.on('click', function (event) {
+        event.preventDefault()
+        city = ($(event.target).text());
+        findWeather()
+    })
 }
 
-var searchedbtn = $(".list-group-item")
 
-searchedbtn.on('click', function (event) {
-    event.preventDefault()
-    console.log("uas;ldkf");
-    city = ($(event.target).text());
-    findWeather()
-})
 
 searchbtn.on('click', function (event) {
     event.preventDefault()
