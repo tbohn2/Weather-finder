@@ -4,9 +4,6 @@ var searchedlist = $("#searchedlist")
 var todaycard = $("#todaycard")
 var forecasthead = $("#forecasthead")
 var forecastcards = [$("#daycard1"), $("#daycard2"), $("#daycard3"), $("#daycard4"), $("#daycard5")]
-var searchedbtn = $(".list-group-item")
-var lat = ""
-var lon = ""
 var city = ""
 var today = dayjs().format("M/D/YYYY")
 var searchedcities = JSON.parse(localStorage.getItem("searched"))
@@ -25,6 +22,15 @@ function loadSearched() {
         searchedlist.append(newSearched)
     }
 }
+
+var searchedbtn = $(".list-group-item")
+
+searchedbtn.on('click', function (event) {
+    event.preventDefault()
+    console.log("uas;ldkf");
+    city = ($(event.target).text());
+    findWeather()
+})
 
 searchbtn.on('click', function (event) {
     event.preventDefault()
@@ -64,7 +70,9 @@ function findWeather() {
             todaycard.children(".humidity").text("Humidity: " + data.main.humidity + "%")
             addToSearched()
         });
+
     var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=c8e2a7585038b4ebf8428eb49100360f&units=imperial"
+
     fetch(forecastURL)
         .then(function (response) {
             return response.json();
@@ -83,27 +91,6 @@ function findWeather() {
                 forecastcard.children(".wind").text("Wind: " + data.list[i].wind.speed + "MPH")
                 forecastcard.children(".humidity").text("Humidity: " + data.list[i].main.humidity + "%")
             }
-
-
-
-            // console.log(data);
-            // console.log(data.list[0].dt_txt);
-            // console.log(data.list[0].main.temp);
-            // console.log(data.list[0].main.humidity);
-            // console.log(data.list[0].wind.speed);
-            // console.log(data.list[0].weather[0].icon);
         });
 }
 
-// function findCoord() {
-//     var coordURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=c8e2a7585038b4ebf8428eb49100360f"
-//     fetch(coordURL)
-//         .then(function (response) {
-//             return response.json();
-//         })
-//         .then(function (data) {
-//             lat = data[0].lat
-//             lon = data[0].lon
-//             findWeather()
-//         })
-// }
