@@ -30,12 +30,20 @@ function loadSearched() {
     })
 }
 
-
+function submit() {
+    city = input.val().trim()
+    findWeather()
+}
 
 searchbtn.on('click', function (event) {
     event.preventDefault()
-    city = input.val().trim()
-    findWeather()
+    submit()
+})
+
+input.keypress(function (event) {
+    if (event.which === 13) {
+        submit()
+    }
 })
 
 function addToSearched() {
