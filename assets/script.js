@@ -6,6 +6,7 @@ var forecasthead = $("#forecasthead")
 var forecastcards = [$("#daycard1"), $("#daycard2"), $("#daycard3"), $("#daycard4"), $("#daycard5")]
 var city = ""
 var today = dayjs().format("M/D/YYYY")
+var date = dayjs().format("YYYY-MM-DD")
 var searchedcities = JSON.parse(localStorage.getItem("searched"))
 if (searchedcities == null) {
     searchedcities = []
@@ -77,13 +78,10 @@ function findWeather() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
             var $date = $(data.list[0].dt_txt.split(" "))
-            console.log($date[0]);
-            console.log($date[0] != "2023-04-03");
             let middayWeather = $([])
             for (let i = 0; i < data.list.length; i++) {
-                if (data.list[i].dt_txt.split(" ").pop() == "00:00:00" && $($date[i] != "2023-04-02")) {
+                if (data.list[i].dt_txt.split(" ").pop() == "00:00:00" && $($date[i] != date)) {
                     middayWeather.push(data.list[i])
                 }
             }
