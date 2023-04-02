@@ -60,12 +60,13 @@ function findWeather() {
             return response.json();
         })
         .then(function (data) {
-            for (let i = 0; i < data.list.length; i += 8) {
-                let x = (i) / 8;
-                console.log(x);
+            for (let i = 4; i < data.list.length; i += 8) {
+                let x = (i - 4) / 8;
                 let forecastcard = forecastcards[x]
                 let src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png"
-                forecastcard.children("h4").text(data.list[i].dt_txt)
+                let date = (data.list[i].dt_txt).slice(0, 10)
+                date = dayjs(date).format("M/D/YYYY")
+                forecastcard.children("h4").text(date)
                 forecastcard.children(".symbol").attr("src", src)
                 forecastcard.children(".temp").text("Temp: " + data.list[i].main.temp)
                 forecastcard.children(".wind").text("Wind: " + data.list[i].wind.speed + "MPH")
