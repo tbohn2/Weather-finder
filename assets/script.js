@@ -56,7 +56,7 @@ function addToSearched() {
 }
 
 function findWeather() {
-    var todayURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=c8e2a7585038b4ebf8428eb49100360f&units=imperial"
+    var todayURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=c8e2a7585038b4ebf8428eb49100360f&units=imperial"
     fetch(todayURL)
         .then(function (response) {
             if (!response.ok) {
@@ -79,7 +79,7 @@ function findWeather() {
             addToSearched()
         });
 
-    var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=c8e2a7585038b4ebf8428eb49100360f&units=imperial"
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=c8e2a7585038b4ebf8428eb49100360f&units=imperial"
 
     fetch(forecastURL)
         .then(function (response) {
