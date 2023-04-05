@@ -106,14 +106,18 @@ function findWeather() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            // Finds the offset timezone and converts it to hours
+            var offset = (data.city.timezone) / 3600
             // Finds the date of the weather in the data by splitting it from time stamp and selecting the date in the array
             var $date = $(data.list[0].dt_txt.split(" "))
             // Creates an empty array to store midday weather for the next five days
             let middayWeather = $([])
-            // All data at 00:00:00 and not today is added to the array middayWeather
+            // All data forecasted between 11 am and 3 pm in the time of the city and not today is added to the array middayWeather
             for (let i = 0; i < data.list.length; i++) {
-                if (data.list[i].dt_txt.split(" ").pop() == "18:00:00" && $($date[i] != date)) {
+                // Creates a variable that shows the UTC hour that the data is forecasted
+                recordTime = parseInt((data.list[i].dt_txt.split(" ").pop()).split(":")[0])
+                // If the UTC time plus the offset from the city's timezone is between 11 am and 3 pm, and the date is not today, the data is added to the middayWeather
+                if (recordTime + offset > 11 && recordTime + offset < 15 && $($date[i] != date)) {
                     middayWeather.push(data.list[i])
                 }
             }
@@ -127,7 +131,7 @@ function findWeather() {
                 date = dayjs(date).format("M/D/YYYY")
                 forecastcard.children("h4").text(date)
                 forecastcard.children(".symbol").attr("src", src)
-                forecastcard.children(".temp").text("Temp: " + middayWeather[i].main.temp)
+                forecastcard.children(".temp").text("Temp: " + middayWeather[i].main.temp + " °F")
                 forecastcard.children(".wind").text("Wind: " + middayWeather[i].wind.speed + "MPH")
                 forecastcard.children(".humidity").text("Humidity: " + middayWeather[i].main.humidity + "%")
             }
