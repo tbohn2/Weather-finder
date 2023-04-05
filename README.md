@@ -9,7 +9,8 @@ When the user enters the name of a city in the search bar, the current weather i
 ## Application URL and Screenshot
 
  https://tbohn2.github.io/Weather-finder/
- ![127 0 0 1_5500_index html (2)](https://user-images.githubusercontent.com/124842865/229693062-e6005790-6a7d-4cc9-a8ac-04e4aca8a14f.png)
+![127 0 0 1_5500_index html (3)](https://user-images.githubusercontent.com/124842865/229953591-b5d1716a-0535-45a3-b49d-d2c05bfdb98b.png)
+
 
 
 ## Installation

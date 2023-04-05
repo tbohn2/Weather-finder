@@ -106,13 +106,14 @@ function findWeather() {
             return response.json();
         })
         .then(function (data) {
+            console.log(data);
             // Finds the date of the weather in the data by splitting it from time stamp and selecting the date in the array
             var $date = $(data.list[0].dt_txt.split(" "))
             // Creates an empty array to store midday weather for the next five days
             let middayWeather = $([])
             // All data at 00:00:00 and not today is added to the array middayWeather
             for (let i = 0; i < data.list.length; i++) {
-                if (data.list[i].dt_txt.split(" ").pop() == "00:00:00" && $($date[i] != date)) {
+                if (data.list[i].dt_txt.split(" ").pop() == "18:00:00" && $($date[i] != date)) {
                     middayWeather.push(data.list[i])
                 }
             }
