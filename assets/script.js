@@ -121,7 +121,7 @@ function findWeather() {
                     middayWeather.push(data.list[i])
                 }
             }
-            console.log(middayWeather);
+
             // Moves through the middayWeather and forecastcards arrays at the same time to display the corresponding data in each card per day
             for (let i = 0; i < middayWeather.length; i++) {
                 let forecastcard = forecastcards[i]
